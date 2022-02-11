@@ -38,5 +38,10 @@ namespace Infrastructure.Data
         {
             return await _context.Set<T>().ToListAsync();
         }
+
+        public async Task<int> Complete()
+        {
+            return await _context.SaveChangesAsync();
+        }
     }
 }

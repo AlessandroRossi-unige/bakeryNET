@@ -1,6 +1,6 @@
 ﻿namespace Core.Entities
 {
-    public class Ingredient
+    public class Ingredient : BaseEntity
     {
         public string Name { get; set; }
         public double Quantity { get; set; }
