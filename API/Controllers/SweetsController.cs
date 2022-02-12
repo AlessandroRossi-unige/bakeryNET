@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using API.Dtos;
+using API.Errors;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
@@ -16,11 +19,19 @@ namespace API.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<ActionResult<Sweet>> AddSweet(Sweet sweet)
+        public async Task<ActionResult<Sweet>> AddSweet(SweetsDto sweet)
         {
-            var result =  await  _sweetsService.CreateSweetAsync(sweet.Name, sweet.Price);
+            try
+            {
+                var result =  await  _sweetsService.CreateSweetAsync(sweet.Name, sweet.Price);
             
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }
