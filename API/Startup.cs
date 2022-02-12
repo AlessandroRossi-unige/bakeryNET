@@ -35,6 +35,7 @@ namespace API
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             services.AddDbContext<BakeryContext>(x =>
                 x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            var t = Configuration.GetConnectionString("DefaultConnection");
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "API", Version = "v1"}); });
         }
 
