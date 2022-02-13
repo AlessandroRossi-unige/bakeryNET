@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using API.Errors;
+using API.Extensions;
 using API.Middleware;
 using Core.Interfaces;
 using Infrastructure.Data;
@@ -33,16 +34,20 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddControllers().AddJsonOptions(opt =>
             {
                 opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
+            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ISweetsService, SweetsService>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<BakeryContext>(x =>
                 x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            var t = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<AppIdentityDbContext>(x =>
+                x.UseNpgsql(Configuration.GetConnectionString("IdentityConnection")));
+            services.AddIdentityServices(Configuration);
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "API", Version = "v1"}); });
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -79,6 +84,8 @@ namespace API
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
