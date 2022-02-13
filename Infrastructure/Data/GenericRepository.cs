@@ -36,7 +36,7 @@ namespace Infrastructure.Data
 
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
-            return await _context.Set<T>().ToListAsync();
+            return (IReadOnlyList<T>) await _context.Sweets.Include(s => s.Ingredients).ToListAsync();
         }
 
         public async Task<int> Complete()

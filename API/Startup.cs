@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using API.Errors;
 using API.Middleware;
@@ -32,9 +33,13 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(opt =>
+            {
+                opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
             services.AddScoped<ISweetsService, SweetsService>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<BakeryContext>(x =>
                 x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             var t = Configuration.GetConnectionString("DefaultConnection");

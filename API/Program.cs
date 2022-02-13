@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Entities;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Npgsql;
 
 namespace API
 {
@@ -25,7 +27,9 @@ namespace API
                 try
                 {
                     var context = services.GetRequiredService<BakeryContext>();
+                    
                     await context.Database.MigrateAsync();
+                   
                 }
                 catch (Exception e)
                 {

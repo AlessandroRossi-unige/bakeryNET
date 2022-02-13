@@ -1,18 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Core.Entities
 {
     public class Sweet : BaseEntity
     {
-        [Required]
         public string Name { get; set; }
-        [Required]
         public double Price { get; set; }
+        public IReadOnlyList<Ingredient> Ingredients {get; set; }
 
-        public Sweet(string name, double price)
+        public Sweet()
+        {
+        }
+
+        public Sweet(string name, double price, IReadOnlyList<Ingredient> ingredients)
         {
             Name = name;
             Price = price;
+            Ingredients = ingredients;
         }
     }
 }

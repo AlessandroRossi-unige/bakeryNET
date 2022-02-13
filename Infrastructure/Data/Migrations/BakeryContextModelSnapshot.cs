@@ -31,10 +31,19 @@ namespace Infrastructure.Data.Migrations
                     b.Property<double>("Quantity")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("UnitsOfMeasure")
+                    b.Property<int>("SweetId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("UnitsOfMeasure")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SweetId");
+
+                    b.HasIndex("Name", "Quantity", "UnitsOfMeasure")
+                        .IsUnique();
 
                     b.ToTable("Ingredients");
                 });
@@ -55,6 +64,22 @@ namespace Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sweets");
+                });
+
+            modelBuilder.Entity("Core.Entities.Ingredient", b =>
+                {
+                    b.HasOne("Core.Entities.Sweet", "Sweet")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("SweetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sweet");
+                });
+
+            modelBuilder.Entity("Core.Entities.Sweet", b =>
+                {
+                    b.Navigation("Ingredients");
                 });
 #pragma warning restore 612, 618
         }

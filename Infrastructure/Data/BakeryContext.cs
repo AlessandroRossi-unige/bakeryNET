@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace Infrastructure.Data
 {
@@ -8,6 +9,7 @@ namespace Infrastructure.Data
     {
         public BakeryContext(DbContextOptions<BakeryContext> options) : base(options)
         {
+            
         }
         
         public DbSet<Sweet> Sweets { get; set; }
@@ -16,8 +18,7 @@ namespace Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-            
+            modelBuilder.Entity<Ingredient>().HasIndex(p => new {p.Name, p.Quantity, p.UnitsOfMeasure}).IsUnique();
         }
     }
 }

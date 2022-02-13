@@ -1,14 +1,23 @@
-﻿namespace Core.Entities
+﻿using System.Runtime.Serialization;
+
+namespace Core.Entities
 {
     public enum UnitsOfMeasure
     {
+        [EnumMember(Value = "Kilos")]
         Kilos,
+        [EnumMember(Value = "Grams")]
         Grams,
-        Milligrams,
+        [EnumMember(Value = "Litres")]
         Litres,
-        Millilitres,
+        [EnumMember(Value = "Ml")]
+        Ml,
+        [EnumMember(Value = "Cups")]
         Cups,
-        Spoons,
-        Teaspoons
+        [EnumMember(Value = "Tablespoons")]
+        Tablespoons,
+        [EnumMember(Value = "Teaspoons")]
+        Teaspoons,
+        
     }
 }
