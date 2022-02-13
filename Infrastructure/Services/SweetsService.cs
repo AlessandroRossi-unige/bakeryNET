@@ -22,11 +22,27 @@ namespace Infrastructure.Services
 
             return sweet;
         }
+        
+        public async Task<Sweet> DeleteSweetAsync(int id)
+        {
+            var sweet = await _genericRepo.GetByIdAsync(id);
+            if (sweet == null) return null;
+            _genericRepo.Delete(sweet);
+            var result = await _genericRepo.Complete();
+            if (result <= 0) return null;
+
+            return sweet;
+        }
 
         public Task<IReadOnlyList<Sweet>> GetSweetsAsync()
         {
             var sweets = _genericRepo.ListAllAsync();
             return sweets;
+        }
+
+        public Task<Sweet> GetSweetByIdAsync(int id)
+        {
+            return _genericRepo.GetByIdAsync(id);
         }
     }
 }
