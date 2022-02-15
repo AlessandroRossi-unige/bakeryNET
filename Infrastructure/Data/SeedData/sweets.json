@@ -1,0 +1,68 @@
+﻿[
+  {
+    "Name": "Lemon cheesecake0",
+    "Description": "Cheesecake is a sweet dessert consisting of one or more layers. The main, and thickest layer, consists of a mixture of soft, fresh cheese (typically cream cheese or ricotta), eggs, and sugar; if there is a bottom layer it often consists of a crust or base made from crushed cookies (or digestive biscuits), graham crackers, pastry, or sponge cake.",
+    "Price": 15,
+    "PictureUrl": "images/sweets/lemon-cheesecake.png",
+    "Ingredients": [{
+      "Name": "Flour",
+      "Quantity": 350,
+      "UnitsOfMeasure": 1
+    },
+      {
+        "Name": "Cream",
+        "Quantity": 100,
+        "UnitsOfMeasure": 1
+      },
+      {
+        "Name": "Lemon Zest",
+        "Quantity": 10,
+        "UnitsOfMeasure": 1
+      }
+    ]
+  },
+  {
+    "Name": "Victoria Sponge",
+    "Description": "The Victoria sponge, also known as the Victoria sandwich or Victorian Cake, was named after Queen Victoria, who was known to enjoy a slice of the sponge cake with her afternoon tea.",
+    "Price": 12,
+    "PictureUrl": "images/sweets/victoria-sponge.png",
+    "Ingredients": [{
+      "Name": "Sugar",
+      "Quantity": 250,
+      "UnitsOfMeasure": 1
+    },
+      {
+        "Name": "Vanilla",
+        "Quantity": 2,
+        "UnitsOfMeasure": 5
+      },
+      {
+        "Name": "Jam",
+        "Quantity": 100,
+        "UnitsOfMeasure": 1
+      }
+    ]
+  },
+  {
+    "Name": "Chocolate cake",
+    "Description": "Chocolate cake is a cake flavored with melted chocolate, cocoa powder, or sometimes both.",
+    "Price": 25,
+    "PictureUrl": "images/sweets/chocolate-cake.png",
+    "Ingredients": [{
+      "Name": "Flour",
+      "Quantity": 1.5,
+      "UnitsOfMeasure": 0
+    },
+      {
+        "Name": "Sugar",
+        "Quantity": 500,
+        "UnitsOfMeasure": 1
+      },
+      {
+        "Name": "Milk",
+        "Quantity": 1,
+        "UnitsOfMeasure": 2
+      }
+    ]
+  }
+]

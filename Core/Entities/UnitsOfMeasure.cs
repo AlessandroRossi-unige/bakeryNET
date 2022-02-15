@@ -2,6 +2,7 @@
 
 namespace Core.Entities
 {
+    
     public enum UnitsOfMeasure
     {
         [EnumMember(Value = "Kilos")]

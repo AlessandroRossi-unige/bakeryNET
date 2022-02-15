@@ -30,6 +30,7 @@ namespace API
                 {
                     var context = services.GetRequiredService<BakeryContext>();
                     await context.Database.MigrateAsync();
+                    await BakeryContextSeed.SeedAsync(context, loggerFactory);
 
                     var userManager = services.GetRequiredService<UserManager<AppUser>>();
                     var identityContext = services.GetRequiredService<AppIdentityDbContext>();

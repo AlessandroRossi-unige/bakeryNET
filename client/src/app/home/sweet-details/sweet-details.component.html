@@ -1,0 +1,23 @@
+<div class="container mt-3">
+  <div class="row" *ngIf="sweet">
+    <div class="col-6">
+      <img src="{{baseUrl + sweet.pictureUrl}}" alt="{{sweet.name}}" class="img-fluid w-100">
+    </div>
+    <div class="col-6">
+      <h3>{{sweet.name}}</h3>
+      <p style="font-size: 2em;">{{sweet.price | currency: "EUR"}}</p>
+      <ul>
+        <li *ngFor="let ingredient of sweet.ingredients; index as i; first as isFirst">
+          {{ingredient.name}} {{ingredient.quantity}}  {{ingredient.unitsOfMeasure}}
+        </li>
+      </ul>
+    </div>
+    <div class="row mt-5">
+      <div class="col-12 ml-3">
+        <h4>Description</h4>
+        <p>{{sweet.description}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>

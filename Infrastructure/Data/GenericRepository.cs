@@ -35,9 +35,14 @@ namespace Infrastructure.Data
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<IReadOnlyList<T>> ListAllAsync()
+        public async Task<IReadOnlyList<T>> ListAllAsync(ISpecification<T> spec)
         {
-            return (IReadOnlyList<T>) await _context.Sweets.Include(s => s.Ingredients).ToListAsync();
+            return await ApplySpecification(spec).ToListAsync();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _context.Set<T>().CountAsync();
         }
 
         public async Task<int> Complete()
@@ -49,6 +54,7 @@ namespace Infrastructure.Data
         {
             return await ApplySpecification(spec).FirstOrDefaultAsync();
         }
+        
         
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {

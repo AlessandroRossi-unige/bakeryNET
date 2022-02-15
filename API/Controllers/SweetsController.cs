@@ -7,10 +7,12 @@ using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [EnableCors]
     public class SweetsController : BaseApiController
     {
         private readonly ISweetsService _sweetsService;
@@ -29,7 +31,7 @@ namespace API.Controllers
         {
             try
             {
-                var result =  await  _sweetsService.CreateSweetAsync(sweet.Name, sweet.Price, sweet.Ingredients);
+                var result =  await  _sweetsService.CreateSweetAsync(sweet.Name, sweet.Price, sweet.Description, sweet.Ingredients, sweet.PictureUrl);
             
                 return _mapper.Map<Sweet, SweetToReturnDto>(result);
             }
@@ -57,10 +59,14 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<SweetToReturnDto>>> GetAllSweets()
+        public async Task<ActionResult<Pagination<SweetToReturnDto>>> GetAllSweets([FromQuery]SweetSpecParam sweetParams)
         {
-            var sweets = await _sweetsService.GetSweetsAsync();
-            return Ok(_mapper.Map<IReadOnlyList<Sweet>, IReadOnlyList<SweetToReturnDto>>(sweets));
+            var spec = new SweetsWithIngredientsSpecification(sweetParams);
+            var sweets = await _sweetsRepo.ListAllAsync(spec);
+            var totalItems = await _sweetsRepo.CountAsync();
+             //var sweets2 = await _sweetsService.GetSweetsAsync();
+            var data = _mapper.Map<IReadOnlyList<Sweet>, IReadOnlyList<SweetToReturnDto>>(sweets);
+            return Ok(new Pagination<SweetToReturnDto>(sweetParams.PageIndex, sweetParams.PageSize, totalItems, data));
         }
         
         [HttpGet("{id}")]

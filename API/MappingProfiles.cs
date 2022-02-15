@@ -9,8 +9,7 @@ namespace API
     {
         public MappingProfiles()
         {
-            CreateMap<Sweet, SweetToReturnDto>()
-                .ForMember(d => d.Ingredients, o=> o.MapFrom(s => s.Ingredients.Select(x => x.Name)));
+            CreateMap<Sweet, SweetToReturnDto>();
         }
     }
 }

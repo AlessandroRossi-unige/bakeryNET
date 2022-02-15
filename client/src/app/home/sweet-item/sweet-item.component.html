@@ -1,0 +1,15 @@
+<div class="card shadow-sm">
+  <img src="{{baseUrl + sweet.pictureUrl}}" alt="{{sweet.name}}" class="bg-info">
+  <div class="card-body d-flex flex-column">
+    <a href="#">
+      <h6 class="text-uppercase">{{sweet.name}}</h6>
+    </a>
+    <span class="mb-2">{{sweet.price | currency : 'EUR'}}</span>
+    <p class="card-text overflow-auto" style="height: 30px">{{sweet.description}}</p>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="btn-group mt-auto">
+        <button routerLink="/{{sweet.id}}" type="button" class="btn btn-outline-secondary">View</button>
+      </div>
+    </div>
+  </div>
+</div>

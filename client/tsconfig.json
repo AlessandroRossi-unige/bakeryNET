@@ -1,20 +1,23 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "compileOnSave": false,
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2019"],
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "target": "ES2019",
-    "strict": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./app/*"]
-    },
-
-    // Remix takes care of building everything in `remix build`.
-    "noEmit": true
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false
   }
 }

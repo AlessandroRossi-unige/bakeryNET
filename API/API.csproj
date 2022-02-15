@@ -19,4 +19,14 @@
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Content\images\sweets" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="wwwroot\images\sweets\chocolate-cake.png" />
+      <None Include="wwwroot\images\sweets\lemon-cheesecake.png" />
+      <None Include="wwwroot\images\sweets\victoria-sponge.png" />
+    </ItemGroup>
+
 </Project>

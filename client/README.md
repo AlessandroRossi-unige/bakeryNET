@@ -1,53 +1,27 @@
-# Welcome to Remix!
+# Client
 
-- [Remix Docs](https://remix.run/docs)
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.14.
 
-## Development
+## Development server
 
-From your terminal:
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-```sh
-npm run dev
-```
+## Code scaffolding
 
-This starts your app in development mode, rebuilding assets on file changes.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Deployment
+## Build
 
-First, build your app for production:
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-```sh
-npm run build
-```
+## Running unit tests
 
-Then run the app in production mode:
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-```sh
-npm start
-```
+## Running end-to-end tests
 
-Now you'll need to pick a host to deploy it to.
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-### DIY
+## Further help
 
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
