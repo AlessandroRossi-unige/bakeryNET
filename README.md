@@ -12,12 +12,19 @@ Once you have the requirements:
 	```shell
 	$ git clone https://github.com/AlessandroRossi-unige/skinet.git
  2. If you want to use docker to get a working version of postgres you need to compose the containers, if you don't connect to any db by changing the connection string in appsettings:
+ 
  `$ docker-compose up -d`
+ 
  3. Run the backend witht the following command:
+ 
 `$ dotnet watch run -p .\API\`
+ 
  5. cd into the client and run:
+ 
  `$ npm install`
+ 
  `$ ng serve`
+
 The server should be running at https://localhost:4200/
 
 The bakery has two admins, Luana and Maria. You can access the admin features of the site by logging with these credentials:
