@@ -22,8 +22,8 @@ namespace Infrastructure.Data
                 
                 var userMaria = new AppUser()
                 {
-                    Email = "maria@bakerynet.it",
-                    UserName = "maria@bakerynet.it",
+                    Email = "maria@bakerynet.com",
+                    UserName = "maria@bakerynet.com",
                     DisplayName = "Maria Vergata",
                     FirstName = "Maria",
                     LastName = "Vergata"

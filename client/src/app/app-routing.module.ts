@@ -6,7 +6,8 @@ import {SweetDetailsComponent} from "./home/sweet-details/sweet-details.componen
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: ':id', component: SweetDetailsComponent},
-  {path: '**', redirectTo: '', pathMatch: 'full'}
+  {path: 'account', loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule), data: {breadcrumb: {skip: true}}},
+  {path: '**', redirectTo: 'not-found', pathMatch: 'full'}
 ];
 
 @NgModule({

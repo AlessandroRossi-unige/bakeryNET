@@ -5,6 +5,8 @@ export interface ISweet {
   name: string,
   description: string;
   price: number;
+  initialPrice: number;
   ingredients: IIngredient[],
-  pictureUrl: string
+  pictureUrl: string,
+  creationDate: string
 }

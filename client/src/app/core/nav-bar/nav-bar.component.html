@@ -7,7 +7,13 @@
   </nav>
 
   <div class="d-flex align-items-center">
-    <a class="btn btn-outline-secondary mr-2" href="#">Login</a>
+    <ng-container  *ngIf="(currentUser$ | async) === null">
+      <a routerLink="/account/login" class="btn btn-outline-secondary mr-2" href="#">Login</a>
+    </ng-container>
+    <ng-container *ngIf="(currentUser$ | async)">
+      <div class="mr-3"><p >Welcome {{(currentUser$ | async).displayName}}</p></div>
+      <a (click)="logout()" class="btn btn-outline-secondary mr-2" href="#">Logout</a>
+    </ng-container>
   </div>
   </div>
 </header>

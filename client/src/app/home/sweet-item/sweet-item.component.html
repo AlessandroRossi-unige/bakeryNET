@@ -4,11 +4,19 @@
     <a href="#">
       <h6 class="text-uppercase">{{sweet.name}}</h6>
     </a>
-    <span class="mb-2">{{sweet.price | currency : 'EUR'}}</span>
+    <ng-container *ngIf="sweet.price === sweet.initialPrice">
+      <span class="mb-2">{{sweet.price | currency : 'EUR'}}</span>
+    </ng-container>
+    <ng-container *ngIf="sweet.price !== sweet.initialPrice">
+      <span class="mb-2"><s style="color: red">{{sweet.initialPrice | currency : 'EUR'}}</s> {{sweet.price | currency : 'EUR'}}</span>
+    </ng-container>
     <p class="card-text overflow-auto" style="height: 30px">{{sweet.description}}</p>
     <div class="d-flex justify-content-center align-items-center">
       <div class="btn-group mt-auto">
         <button routerLink="/{{sweet.id}}" type="button" class="btn btn-outline-secondary">View</button>
+        <ng-container  *ngIf="(currentUser$ | async)">
+          <button (click)="deleteSweet()" type="button" class="btn btn-danger btn-primary fa fa-trash ml-2"></button>
+        </ng-container>
       </div>
     </div>
   </div>

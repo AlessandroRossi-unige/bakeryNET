@@ -36,4 +36,10 @@ export class HomeService {
   getSweet(id: number) {
     return this.http.get<ISweet>(this.baseUrl + 'sweets/' + id);
   }
+
+  deleteSweet(id: number) {
+    console.log('delete');
+    return this.http.delete<ISweet>(this.baseUrl + 'sweets/' + id);
+
+  }
 }

@@ -21,6 +21,9 @@
           [pageIndex]="this.shopParams.pageIndex"
         ></app-paging-header>
         <div class="form-inline mt-2">
+          <ng-container  *ngIf="(currentUser$ | async)">
+            <button (click)="passDay()" class="btn btn-warning my-2 mr-3" href="#">Pass a day</button>
+          </ng-container>
           <input (keyup.enter)="onSearch()" class="form-control mr-2" #search style="width:300px" placeholder="Search..." type="text">
           <button (click)="onSearch()" class="btn btn-outline-primary my-2">Search</button>
           <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
@@ -28,7 +31,7 @@
       </div>
       <div class="row h-100 row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
         <div class="col-4 mb-4" *ngFor="let item of sweets">
-          <app-sweet-item [sweet]="item"></app-sweet-item>
+          <app-sweet-item [sweet]="item" [daysPassed]="daysPassed"></app-sweet-item>
         </div>
 
       </div>

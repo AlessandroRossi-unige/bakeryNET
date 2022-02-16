@@ -12,7 +12,7 @@ import {RouterModule} from "@angular/router";
   declarations: [
     HomeComponent,
     SweetItemComponent,
-    SweetDetailsComponent
+    SweetDetailsComponent,
   ],
   exports: [
     HomeComponent

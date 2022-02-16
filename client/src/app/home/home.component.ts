@@ -2,6 +2,9 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HomeService} from "./home.service";
 import {ISweet} from "../shared/models/sweets";
 import {ShopParams} from "../shared/models/shopParams";
+import {Observable} from "rxjs";
+import {IUser} from "../shared/models/user";
+import {AccountService} from "../account/account.service";
 
 @Component({
   selector: 'app-home',
@@ -10,20 +13,27 @@ import {ShopParams} from "../shared/models/shopParams";
 })
 export class HomeComponent implements OnInit {
   @ViewChild('search', {static: true}) searchTerm: ElementRef;
+  currentUser$: Observable<IUser>;
   shopParams = new ShopParams();
   sweets: ISweet[];
   totalCount: number;
+  daysPassed = 0;
   sortOptions = [
     {name: 'Alphabetical', value:'name'},
     {name: 'Price: Low to High', value: 'priceAsc'},
     {name: 'Price: High to Low', value: 'priceDesc'},
   ];
 
-  constructor(private homeService: HomeService) { }
+  constructor(private homeService: HomeService, private accountService: AccountService) { }
 
   ngOnInit(): void {
+    this.currentUser$ = this.accountService.currentUser$;
     this.getSweets();
-
+    let lsDaysPassed = +localStorage.getItem('daysPassed');
+    if (lsDaysPassed) this.daysPassed = lsDaysPassed;
+    if (this.daysPassed >= 3) {
+      localStorage.setItem('daysPassed', '0');
+    }
   }
 
   getSweets() {
@@ -60,6 +70,17 @@ export class HomeComponent implements OnInit {
     this.searchTerm.nativeElement.value = '';
     this.shopParams = new ShopParams();
     this.getSweets();
+  }
+
+  passDay() {
+
+    this.daysPassed++;
+    localStorage.setItem('daysPassed', this.daysPassed.toString());
+    window.location.reload();
+  }
+
+  onAdd() {
+
   }
 
 }
