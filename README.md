@@ -1,8 +1,6 @@
 # BakeryNET
 This is a small bakery website developed with angular as frontend and .NET / ef core as backend. The database used in postgresql
 
-It is implemented following the TDD mantra of "red => green => refactoring", as such I commited often to demonstrate my work process. Create a new failing test, implement the feature so the test passes, refactor to improve current code and find any bug.
-The solution consists of 52 tests for both failing and passing cases.
 
 The only requirements to get started is having a recent version of Node installed. Download here: https://nodejs.org/en/download/, and a working .NET environment
 
